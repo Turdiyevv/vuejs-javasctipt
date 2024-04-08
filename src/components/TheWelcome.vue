@@ -9,9 +9,6 @@ import SupportIcon from './icons/IconSupport.vue'
 
 <template>
   <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
     <template #heading>Documentation</template>
 
     Vue’s
@@ -20,9 +17,6 @@ import SupportIcon from './icons/IconSupport.vue'
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #icon>
-      <ToolingIcon />
-    </template>
     <template #heading>Tooling</template>
 
     This project is served and bundled with
@@ -42,9 +36,6 @@ import SupportIcon from './icons/IconSupport.vue'
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #icon>
-      <EcosystemIcon />
-    </template>
     <template #heading>Ecosystem</template>
 
     Get official tools and libraries for your project:
@@ -58,9 +49,6 @@ import SupportIcon from './icons/IconSupport.vue'
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
     <template #heading>Community</template>
 
     Got stuck? Ask your question on
@@ -76,9 +64,6 @@ import SupportIcon from './icons/IconSupport.vue'
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #icon>
-      <SupportIcon />
-    </template>
     <template #heading>Support Vue</template>
 
     As an independent project, Vue relies on community backing for its sustainability. You can help

@@ -1,24 +1,48 @@
+
 <script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
+import { ref } from "vue";
+
+const expanded = ref(false);
+const childExpanded = ref(false);
+
+function toggleExpand() {
+  console.log()
+  expanded.value = !expanded.value;
+}
+
+function toggleChildExpand() {
+  console.log()
+  childExpanded.value = !childExpanded.value;
+}
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
+    <ul>
+      <li>
+        <a class="expand" @click="toggleExpand">Root</a>
+        <ul v-show="expanded">
+          <li>
+            <a class="expand" @click="toggleChildExpand">Child</a>
+            <ul v-show="childExpanded">
+              <li>
+                <a class="expand">Super Child</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
+.greetings{
+  color: white;
+}
+ul li ul {
+  display: none;
+}
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
@@ -28,11 +52,6 @@ h1 {
 
 h3 {
   font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
 }
 
 @media (min-width: 1024px) {
