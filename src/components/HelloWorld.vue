@@ -13,13 +13,6 @@ const toggleExpand = (id) => {
     expanded.value.push(id);
   }
 };
-const recursiveComponent = (props) => {
-  return {
-    treeData: props.treeData,
-    expanded,
-    toggleExpand
-  };
-};
 watch(() => props.treeData, () => {
   expanded.value = props.treeData.map(item => item.id);
 });
