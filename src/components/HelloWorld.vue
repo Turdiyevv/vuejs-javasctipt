@@ -1,63 +1,74 @@
 
 <script setup>
-import { ref } from "vue";
+import {ref, watch} from "vue";
+const props = defineProps(
+    {treeData: Array}
+)
 
-const expanded = ref(false);
-const childExpanded = ref(false);
-
-function toggleExpand() {
-  console.log()
-  expanded.value = !expanded.value;
-}
-
-function toggleChildExpand() {
-  console.log()
-  childExpanded.value = !childExpanded.value;
-}
+const expanded = ref([]);
+const toggleExpand = (id) => {
+  if (expanded.value.includes(id)) {
+    expanded.value = expanded.value.filter(itemId => itemId !== id);
+  } else {
+    expanded.value.push(id);
+  }
+};
+const recursiveComponent = (props) => {
+  return {
+    treeData: props.treeData,
+    expanded,
+    toggleExpand
+  };
+};
+watch(() => props.treeData, () => {
+  expanded.value = props.treeData.map(item => item.id);
+});
 </script>
 
 <template>
   <div class="greetings">
-    <ul>
-      <li>
-        <a class="expand" @click="toggleExpand">Root</a>
-        <ul v-show="expanded">
-          <li>
-            <a class="expand" @click="toggleChildExpand">Child</a>
-            <ul v-show="childExpanded">
-              <li>
-                <a class="expand">Super Child</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
+    <div v-for="item in treeData" :key="item.id">
+      <div class="tree__class" @click="toggleExpand(item.id)">
+        <div style="margin: 0 5px">{{item.id}}</div>
+        <div>{{ item.text }}</div>
+      </div>
+
+        <div v-show="expanded.includes(item.id)"
+             v-for="itemCh in item.child" :key="itemCh.id">
+          <div class="tree__class-ch" @click="itemCh.child? toggleExpand(item.id) : ''">
+            <div style="margin: 0 5px">{{itemCh.id}}</div>
+            <div>{{ itemCh.text }}</div>
+          </div>
+<!--          <div class="tree__class-ch" v-if="itemCh.child">{{ itemCh.child }}</div>-->
+        </div>
+
+    </div>
   </div>
 </template>
 
 <style scoped>
+.tree__class{
+  margin: 2px;
+  background-color: cornsilk;
+}
+.tree__class-ch{
+  margin: 2px 2px 2px 32px;
+  background-color: #7ef6f6;
+}
+.tree__class, .tree__class-ch{
+  width: 130px;
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+.tree__class:active{
+  background-color: #faf7ee;
+}
+.tree__class-ch:active{
+  background-color: #7EF6F6FF;
+}
 .greetings{
-  color: white;
-}
-ul li ul {
-  display: none;
-}
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+  color: blue;
 }
 </style>
