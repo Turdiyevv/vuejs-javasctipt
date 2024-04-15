@@ -1,7 +1,7 @@
 @import './base.css';
 
 #app {
-  width: 1800px;
+  width: auto;
   height: 700px;
   margin: 0 auto;
   padding: 2rem;

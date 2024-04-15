@@ -1,6 +1,6 @@
 
 <script setup>
-import {ref, watch} from "vue";
+import {computed, ref, watch} from "vue";
 const props = defineProps(
     {treeData: Array}
 )
@@ -13,8 +13,10 @@ const toggleExpand = (id) => {
     expanded.value.push(id);
   }
 };
-watch(() => props.treeData, () => {
+
+const watchedTreeData = computed(() => {
   expanded.value = props.treeData.map(item => item.id);
+  return props.treeData;
 });
 </script>
 
