@@ -1,6 +1,7 @@
 <script setup>
 import TheWelcome from './components/TheWelcome.vue'
 import Tree from "@/components/tree.vue";
+import {reactive} from "vue";
 
 const treeData = [
   {
@@ -54,7 +55,7 @@ const treeData = [
   },
 ]
 
-const table = [
+const table = reactive([
     [
       {id: 0, text: 'name', text2: 'surname', text3: 'age'},
     ],
@@ -63,7 +64,7 @@ const table = [
       {id: 1, text: 'name22', surname:'aedwedwed', age: '31'},
       {id: 2, text: 'name33', surname:'seddds', age: '15'}
     ]
-]
+])
 </script>
 
 <template>

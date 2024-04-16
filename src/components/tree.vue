@@ -1,6 +1,6 @@
 <script setup>
 
-import {reactive, ref} from "vue";
+import {reactive} from "vue";
 
 const props = defineProps(
     {
@@ -8,7 +8,7 @@ const props = defineProps(
       isVisible: Boolean,
     }
 )
-let treeItem = reactive({isActive: true});
+let treeItem = reactive({isActive: false});
 const toggleItem = () => {
   treeItem.isActive = !treeItem.isActive;
 }

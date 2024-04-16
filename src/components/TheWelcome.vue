@@ -1,35 +1,35 @@
 <script setup>
-import {ref} from "vue";
+import {reactive, ref} from "vue";
 
 const tableProps = defineProps(
     {table: Array}
 )
-const tableTh = tableProps.table[0];
-const tableTd = tableProps.table[1];
+const tableTh = reactive(tableProps.table[0]);
+let tableTd = reactive(tableProps.table[1]);
 
 let inputView = ref(false);
-let val0 = ref('');
 let val1 = ref('');
 let val2 = ref('');
 let val3 = ref('');
+let val4 = ref('');
 let currentItem = ref(null);
 
 function editFunction(item){
     inputView.value = true;
-    currentItem.value = item.value;
-    val0.value = item.id;
     val1.value = item.text;
     val2.value = item.surname;
     val3.value = item.age;
+    val4.value = item.id;
 }
 function update(val1,val2,val3){
-  if (currentItem.value) {
-    currentItem.value.text = val1.value;
-    currentItem.value.surname = val2.value;
-    currentItem.value.age = val3.value;
+  if (currentItem) {
+    currentItem.text = val1;
+    currentItem.surname = val2;
+    currentItem.age = val3;
+    currentItem.id = val4;
   }
+    currentItem = tableTd.find(obj => obj.id === currentItem.id);
   inputView.value = false;
-return { inputView, val1, val2, val3, currentItem, update };
 }
 </script>
 
