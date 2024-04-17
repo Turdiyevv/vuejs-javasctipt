@@ -10,36 +10,38 @@ let tableTd = reactive(tableProps.table[1]);
 let inputView = ref(false);
 let val1 = ref('');
 let val2 = ref('');
-let val3 = ref('');
+let val3 = ref(null);
 let val4 = ref(null);
 
 let currentItem = reactive({});
 
 function editFunction(item){
-  console.log(item)
+    console.log(item);
     val4.value = item.id;
     val1.value = item.text;
     val2.value= item.surname;
     val3.value = item.age;
     inputView.value = true;
-  console.log(val4.value,val1.value)
 }
 
-const update = () => {
-  let itemIndex = tableTd.find(x => x.id = val4.value)
-  console.log(itemIndex)
-  inputView.value = false;
+function update() {
+  let itemIndex = tableTd.find(x => x.id === val4.value);
+  if (itemIndex){
+    itemIndex.text = val1.value;
+    itemIndex.surname = val2.value;
+    itemIndex.age = val3.value;
+    console.log(itemIndex);
+  }
+    inputView.value = false;
+  clear();
 }
 
-// function update(currentItem){
-//   if (currentItem) {
-//     // currentItem.text = val1;
-//     // currentItem.surname = val2;
-//     // currentItem.age = val3;
-//     // currentItem.id = val4;
-//     console.log(currentItem)
-//   }
-// }
+function clear(){
+    val4.value = null;
+    val1.value = '';
+    val2.value= '';
+    val3.value = null;
+}
 </script>
 
 <template>
