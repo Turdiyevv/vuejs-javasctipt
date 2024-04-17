@@ -11,26 +11,35 @@ let inputView = ref(false);
 let val1 = ref('');
 let val2 = ref('');
 let val3 = ref('');
-let val4 = ref('');
-let currentItem = ref(null);
+let val4 = ref(null);
+
+let currentItem = reactive({});
 
 function editFunction(item){
-    inputView.value = true;
-    val1.value = item.text;
-    val2.value = item.surname;
-    val3.value = item.age;
+  console.log(item)
     val4.value = item.id;
+    val1.value = item.text;
+    val2.value= item.surname;
+    val3.value = item.age;
+    inputView.value = true;
+  console.log(val4.value,val1.value)
 }
-function update(val1,val2,val3){
-  if (currentItem) {
-    currentItem.text = val1;
-    currentItem.surname = val2;
-    currentItem.age = val3;
-    currentItem.id = val4;
-  }
-    currentItem = tableTd.find(obj => obj.id === currentItem.id);
+
+const update = () => {
+  let itemIndex = tableTd.find(x => x.id = val4.value)
+  console.log(itemIndex)
   inputView.value = false;
 }
+
+// function update(currentItem){
+//   if (currentItem) {
+//     // currentItem.text = val1;
+//     // currentItem.surname = val2;
+//     // currentItem.age = val3;
+//     // currentItem.id = val4;
+//     console.log(currentItem)
+//   }
+// }
 </script>
 
 <template>
@@ -54,7 +63,7 @@ function update(val1,val2,val3){
         <input v-model="val1" class="width__style">
         <input v-model="val2" class="width__style">
         <input v-model="val3" class="width__style">
-        <button class="btn__style" @click="update(val1,val2,val3)">update</button>
+        <button class="btn__style" @click="update(currentItem)">update</button>
       </div>
 
   </div>

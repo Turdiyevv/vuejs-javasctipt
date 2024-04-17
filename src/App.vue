@@ -60,9 +60,9 @@ const table = reactive([
       {id: 0, text: 'name', text2: 'surname', text3: 'age'},
     ],
     [
-      {id: 0, text: 'name1', surname:'awd', age: '21'},
-      {id: 1, text: 'name22', surname:'aedwedwed', age: '31'},
-      {id: 2, text: 'name33', surname:'seddds', age: '15'}
+      {id: 1, text: 'name1', surname:'awd', age: 0},
+      {id: 2, text: 'name22', surname:'jump', age: 0},
+      {id: 3, text: 'name33', surname:'upg', age: 0}
     ]
 ])
 </script>
@@ -82,7 +82,7 @@ const table = reactive([
 
 <style>
 .my-tree{
-  color: blue;
+  color: white;
 }
 .d-block {
   display: block;
